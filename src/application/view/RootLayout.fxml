@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.RootLayoutController">
+	<top>
+				<MenuBar BorderPane.alignment="CENTER">
+					<menus>
+						<Menu mnemonicParsing="false" text="檔案">
+							<items>
+								<MenuItem mnemonicParsing="false" onAction="#showEditPropertiesDialog" text="設定檔編輯" />
+                  <MenuItem fx:id="updateSystemMenuItem" disable="true" mnemonicParsing="false" onAction="#showUpdateSystemFileDialog" text="更新系統檔案" />
+								<MenuItem mnemonicParsing="false" onAction="#closeRootLayout" text="結束" />
+							</items>
+						</Menu>
+						<Menu mnemonicParsing="false" text="幫助">
+							<items>
+								<MenuItem mnemonicParsing="false" text="關於" />
+							</items>
+						</Menu>
+					</menus>
+				</MenuBar>
+	</top>
+</BorderPane>

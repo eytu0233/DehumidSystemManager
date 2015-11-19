@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="310.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.RaspberryStatusOverviewController">
+   <children>
+      <ToolBar layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <Button mnemonicParsing="false" onAction="#restartAll" style="-fx-background-image: url('@images/start.png');" text="全部重啟" />
+            <Button mnemonicParsing="false" onAction="#shutdownAll" style="-fx-background-image: url('@images/start.png');" text="全部關閉" />
+         </items>
+      </ToolBar>
+      <TableView fx:id="piTable" layoutX="10.0" layoutY="10.0" prefHeight="375.0" prefWidth="270.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+         <columns>
+            <TableColumn fx:id="ipColumn" editable="false" prefWidth="75.0" style="-fx-alignment: CENTER;" text="IP" />
+            <TableColumn fx:id="statusColumn" editable="false" prefWidth="75.0" style="-fx-alignment: CENTER;" text="狀態" />
+            <TableColumn fx:id="pidColumn" editable="false" prefWidth="75.0" style="-fx-alignment: CENTER;" text="Pid" />
+         </columns>
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#restart" text="重啟" />
+                  <MenuItem mnemonicParsing="false" onAction="#shutdown" text="停止" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
+      </TableView>
+   </children>
+</AnchorPane>
