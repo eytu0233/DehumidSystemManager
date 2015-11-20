@@ -21,6 +21,7 @@ public class RaspberryPi implements Runnable {
 	private static final String START_SYSTEM_CMD = "~/workspace/DehumidSystem&";
 	private static final String SHUT_DOWN_SYSTEM_CMD = "sudo kill ";
 
+	private static final String CONNECTING = "連線中";
 	private static final String RUNNING = "執行中";
 	private static final String STOPPING = "停止";
 	private static final String DISCONNECT = "斷線";
@@ -29,8 +30,10 @@ public class RaspberryPi implements Runnable {
 	private static final int TIMEOUT = 2000;
 
 	private static final TimeUnit SCAN_PERIOD_UNIT = TimeUnit.SECONDS;
-	private static final int SCAN_PERIOD = 1;
+	private static final int SCAN_PERIOD = 5;
 	private static final int SCAN_DELAY = 0;
+	
+	private static final JSch jsch = new JSch();
 
 	private StringProperty ip;
 	private StringProperty status;
@@ -42,8 +45,9 @@ public class RaspberryPi implements Runnable {
 		super();
 		try {
 			setIP(host);
+			setStatus(CONNECTING);
 
-			session = new JSch().getSession(user, host, SSH_PORT);
+			session = jsch.getSession(user, host, SSH_PORT);
 			session.setPassword(passwd);
 			session.setConfig("StrictHostKeyChecking", "no");
 
@@ -101,15 +105,19 @@ public class RaspberryPi implements Runnable {
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		try {
+		try {			
 			if (!session.isConnected())
 				session.connect(TIMEOUT);
 		} catch (JSchException e) {
 			// TODO Auto-generated catch block
-			System.out.println(ip + " disconnect...");
+			e.printStackTrace();
+			System.out.println(getIP() + " disconnect...");
 			setPid("");
 			setStatus(DISCONNECT);
 			return;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		String result = startCommand(CHECK_SYSTEM_ALIVE_CMD);
