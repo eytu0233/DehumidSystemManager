@@ -19,6 +19,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
@@ -82,6 +83,7 @@ public class MainApp extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			this.primaryStage = primaryStage;
+			this.primaryStage.getIcons().add(new Image("file:icon.png"));
 			this.primaryStage.setTitle("除濕機系統控制平台");
 
 			initRootLayout();

@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -29,6 +30,7 @@ public class RootLayoutController {
 			dialogStage.initOwner(mainApp.getPrimaryStage());
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.setTitle("設定檔編輯");
+			dialogStage.getIcons().add(new Image("file:icon.png"));
 
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainApp.class.getResource("view/EditConfigDialog.fxml"));
@@ -58,6 +60,7 @@ public class RootLayoutController {
 			dialogStage.initOwner(mainApp.getPrimaryStage());
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.setTitle("更新系統檔案");
+			dialogStage.getIcons().add(new Image("file:icon.png"));
 
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainApp.class.getResource("view/UpdateSystemFileDialog.fxml"));

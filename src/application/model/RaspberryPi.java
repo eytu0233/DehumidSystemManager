@@ -27,7 +27,7 @@ public class RaspberryPi implements Runnable {
 	private static final String DISCONNECT = "斷線";
 
 	private static final int SSH_PORT = 22;
-	private static final int TIMEOUT = 2000;
+	private static final int TIMEOUT = 20000;
 
 	private static final TimeUnit SCAN_PERIOD_UNIT = TimeUnit.SECONDS;
 	private static final int SCAN_PERIOD = 5;
@@ -172,8 +172,6 @@ public class RaspberryPi implements Runnable {
 				if (channel.isClosed()) {
 					if (in.available() > 0)
 						continue;
-					// System.out.println("exit-status: " +
-					// channel.getExitStatus());
 					break;
 				}
 				try {
