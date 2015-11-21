@@ -22,11 +22,14 @@ public class RaspberryPi implements Runnable {
 	private static final String SHUT_DOWN_SYSTEM_CMD = "sudo kill ";
 
 	private static final String CONNECTING = "連線中";
+	private static final String STARTING = "啟動中";	
 	private static final String RUNNING = "執行中";
 	private static final String STOPPING = "停止";
+	private static final String SHUTDOWNING = "關閉中";
 	private static final String DISCONNECT = "斷線";
 
 	private static final int SSH_PORT = 22;
+	private static final int DELAY = 1000;
 	private static final int TIMEOUT = 20000;
 
 	private static final TimeUnit SCAN_PERIOD_UNIT = TimeUnit.SECONDS;
@@ -101,6 +104,14 @@ public class RaspberryPi implements Runnable {
 			pid = new SimpleStringProperty(this, "none");
 		return pid;
 	}
+	
+	public void setStatusStarting(){
+		setStatus(STARTING);		
+	}
+	
+	public void setStatusShutdowning(){
+		setStatus(SHUTDOWNING);
+	}
 
 	@Override
 	public void run() {
@@ -140,6 +151,13 @@ public class RaspberryPi implements Runnable {
 	public void restart() {
 		// TODO Auto-generated method stub
 		shutdown();
+		
+		try {
+			Thread.sleep(DELAY);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		if (getPid().isEmpty())
 			setCommand(START_SYSTEM_CMD);

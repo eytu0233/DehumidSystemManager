@@ -32,17 +32,19 @@ public class RaspberryStatusOverviewController {
 	@FXML
 	private void shutdown() {
 		RaspberryPi selectPi = piTable.getSelectionModel().getSelectedItem();
-		if (selectPi != null)
+		if (selectPi != null){
+			selectPi.setStatusShutdowning();
 			selectPi.shutdown();
+		}
 	}
 
 	@FXML
 	private void restart() {
-
 		RaspberryPi selectPi = piTable.getSelectionModel().getSelectedItem();
-		if (selectPi != null)
+		if (selectPi != null){
+			selectPi.setStatusStarting();
 			selectPi.restart();
-
+		}
 	}
 	
 	@FXML
